@@ -1,0 +1,123 @@
+.wecomebox{
+
+    padding: 80px;
+    background: #1a202c;
+    text-align: center;
+    border-radius: 20px;
+    color: #e2e8f0;
+    -webkit-box-shadow: 0px 10px 13px -7px #000000, 0px 0px 35px 28px rgba(0,0,0,0.15);
+    box-shadow: 0px 10px 13px -7px #000000, 0px 0px 35px 28px rgba(0,0,0,0.15);
+}
+
+.myrow {
+
+    --bs-gutter-y: 0;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: calc(-1 * var(--bs-gutter-y));
+    margin-right: calc(-0.5 * var(--bs-gutter-x));
+    margin-left: calc(-0.5 * var(--bs-gutter-x));
+}
+
+.welcomebgimage{
+    /*background-image:url('/images/bgwelcome.png') ;*/
+    width: 100%;
+    justify-content: center;
+    display: inline-flex;
+
+
+
+    height: 100vh;
+}
+
+.mycenter{
+    align-self: center;
+    align-content: center;
+    align-items: center;
+    vertical-align: center;
+    horiz-align: center;
+    alignment: center;
+    margin-left: 10%;
+    margin-right: 10%;
+    /*width: 80%;*/
+}
+
+.welcomebutton{
+    color: #e2e8f0;
+    background-color: #520103;
+    border-radius: 10px;
+    text-decoration: none;
+
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 8px;
+    padding-top: 8px;
+
+}
+
+.marginlr{
+    margin-top: 280px;
+    margin-bottom: 340px;
+}
+
+.mbutton{
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 220px;
+    background-color: #520103;
+    color: #e2e8f0;
+    width: 50vw;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 50px;
+    border-radius: 20px;
+    text-decoration: none;
+}
+.bbutton{
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 50px;
+    background-color: #520103;
+    color: #e2e8f0;
+    width: 50vw;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 220px;
+    border-radius: 20px;
+    text-decoration: none;
+
+}
+
+.facultybuttons{
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-bottom: 20px;
+}
+/* Add styles to customize the select dropdown */
+select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 4px;
+    width: 100%;
+    font-size: 16px;
+    color: #333;
+    cursor: pointer;
+}
+
+/* Style for dropdown options */
+select option {
+    padding: 10px;
+    background-color: #ffffff;
+    color: #333;
+}
+
+/* Style for the dropdown container */
+.dropdown-container {
+    width: 100%;
+    max-width: 300px; /* Adjust this based on your layout */
+    margin: 20px auto;
+}

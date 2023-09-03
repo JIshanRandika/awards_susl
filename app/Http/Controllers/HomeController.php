@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Category;
+use App\Models\Submission;
 
 class HomeController extends Controller
 {
@@ -30,8 +31,9 @@ class HomeController extends Controller
     {
 
         $categories = Category::all(); // Retrieve categories from the database
+        $submissions = Submission::all();
 
-        return view('home', compact('categories'));
+        return view('home', compact('categories','submissions'));
 //        return view('home',compact('category'));
     }
 

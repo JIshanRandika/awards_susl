@@ -44,10 +44,10 @@ class CategoryController extends Controller
             $pro=new Category();
             $pro->category = $request->category;
             $pro->save();
-            return view('category.index',['categories'=>$categories])
+            return view('category.index',compact('categories'))
                 ->with('success','New user added successfully.');
         }catch (QueryException $e){
-            return view('category.index',['categories'=>$categories])
+            return view('category.index',compact('categories'))
                 ->with('success',"Already registered");
         }
     }
@@ -96,7 +96,7 @@ class CategoryController extends Controller
     {
         $category -> delete();
         $categories = DB::select('select * from categories');
-        return view('category.index',['categories'=>$categories])
+        return view('category.index',compact('categories'))
             ->with('success','Successfully deleted');
     }
 }

@@ -22,6 +22,8 @@ Auth::routes();
 
 Route::resource('user', \App\Http\Controllers\UserController::class);
 Route::resource('category', \App\Http\Controllers\CategoryController::class);
+Route::resource('submission', \App\Http\Controllers\SubmissionController::class);
+Route::resource('home', \App\Http\Controllers\HomeController::class);
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -36,7 +38,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 
-Route::get('/getPDF', [App\Http\Controllers\PDFController::class, 'download']);
+//Route::get('/getPDF', [App\Http\Controllers\PDFController::class, 'download']);
 
 Route::group(['middleware'=>'auth'], function () {
     Route::get('permissions-all-users',['middleware'=>'check-permission:user|admin|superadmin','uses'=>'HomeController@allUsers']);

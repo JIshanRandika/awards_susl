@@ -55,7 +55,7 @@
                 @if (count($submissions) > 0)
                     <div style="padding: 50px">
                         <h2>Submissions</h2>
-                        <table class="table table-bordered form-duration-div">
+                        <table class="table table-striped">
                             <thead>
                             <tr>
                                 <th>Author Name</th>

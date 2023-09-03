@@ -39,38 +39,9 @@
 {{--        <input class="form-control" type = 'text' name = 'roleNo'--}}
 {{--        value = '<?php echo$users[0]->is_permission; ?>'/>--}}
             <select required name="is_permission" class="custom-select" id="inputGroupSelect01" >
-{{--                <option value=<?php echo$users[0]->is_permission; ?> selected>Choose...</option>--}}
-
-                                <option value=<?php echo$users[0]->is_permission; ?> selected><?php echo
-                    ($users[0]->is_permission == '-1' ? "Admin" :
-                    ($users[0]->is_permission == '1' ? "Vice Chancellor" :
-                        ($users[0]->is_permission == '2' ? "Registrar" :
-                            ($users[0]->is_permission == '31' ? "Assistant Registrar of The Faculty of Graduate Studies" :
-                                ($users[0]->is_permission == '32' ? "Assistant Registrar of The Faculty of Agriculture Science" :
-                                    ($users[0]->is_permission == '33' ? "Assistant Registrar of The Faculty of Applied Sciences" :
-                                        ($users[0]->is_permission == '34' ? "Assistant Registrar of The Faculty of Geomatics" :
-                                            ($users[0]->is_permission == '35' ? "Assistant Registrar of The Faculty of Management Studies" :
-                                                ($users[0]->is_permission == '36' ? "Assistant Registrar of The Faculty of Medicine" :
-                                                    ($users[0]->is_permission == '37' ? "Assistant Registrar of The Faculty of Social Sciences & Languages" :
-                                                        ($users[0]->is_permission == '38' ? "Assistant Registrar of The Faculty of Technology" :
-                                                            ($users[0]->is_permission == '39' ? "Assistant Registrar of The Faculty of Computing" :
-                                                                ($users[0]->is_permission == '4' ? "Student Affairs Division Clerk" : "Finance Division Clerk")))))))))))))
-
-                ?></option>
                 <option value=-1>Admin</option>
-                <option value=1>Vice Chancellor</option>
-                <option value=2>Registrar</option>
-                <option value="31">Assistant Registrar of The Faculty of Graduate Studies</option>
-                <option value="32">Assistant Registrar of The Faculty of Agriculture Science</option>
-                <option value="33">Assistant Registrar of The Faculty of Applied Sciences</option>
-                <option value="34">Assistant Registrar of The Faculty of Geomatics</option>
-                <option value="35">Assistant Registrar of The Faculty of Management Studies</option>
-                <option value="36">Assistant Registrar of The Faculty of Medicine</option>
-                <option value="37">Assistant Registrar of The Faculty of Social Sciences & Languages</option>
-                <option value="38">Assistant Registrar of The Faculty of Technology</option>
-                <option value="39">Assistant Registrar of The Faculty of Computing</option>
-                <option value="4">Student Affairs Division Clerk</option>
-                <option value="5">Finance Division Clerk</option>
+                <option value=1>Reviewer</option>
+                <option value=2>User</option>
 
             </select>
         </td>

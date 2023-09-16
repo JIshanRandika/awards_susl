@@ -14,9 +14,9 @@
             <a class="welcomebutton" href={{ route('category.index') }} aria-expanded="false" v-pre>
                 Categories
             </a>
-                <form method="GET" action="{{route('deletebyyear')}}" enctype="multipart/form-data">
+                <form style="align-items: center;justify-content: center; display: flex" method="GET" action="{{route('deletebyyear')}}" enctype="multipart/form-data">
                     @csrf
-                    <div class="card-footer">
+                    <div class="card-footer col-xs-5 col-sm-5 col-md-5">
                         <div class="row">
                             <div class="col-xs-10 col-sm-10 col-md-10">
                                 <div class="form-group">
@@ -207,7 +207,7 @@
                                     <td>{{ $submission->authorName }}</td>
                                     <td>{{ $submission->category }}</td>
                                     <td><a href="{{ asset('submissions/' . $submission->file) }}" target="_blank">{{ $submission->file }}</a></td>
-                                    <td><a href="{{ asset('submissions/' . $submission->approvalLetter) }}" target="_blank">{{ $submission->file }}</a></td>
+                                    <td><a href="{{ asset('approvalLetters/' . $submission->approvalLetter) }}" target="_blank">{{ $submission->approvalLetter }}</a></td>
                                     <td>{{ $submission->gSLink }}</td>
                                     <td>{{ $submission->numCit }}</td>
                                     <td>{{ $submission->year }}</td>

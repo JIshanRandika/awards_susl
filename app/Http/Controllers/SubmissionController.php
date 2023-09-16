@@ -51,12 +51,14 @@ class SubmissionController extends Controller
 
         }
 
+        if($request->approvalLetter){
+            $approvalLetter= $request->approvalLetter;
+            $approvalLetterfilename= date('YmdHi').$approvalLetter->getClientOriginalName();
+            $approvalLetter-> move(public_path('/approvalLetters'), $approvalLetterfilename);
+            $pro->approvalLetter=$approvalLetterfilename;
+        }
 
-        $approvalLetter= $request->approvalLetter;
-        $approvalLetterfilename= date('YmdHi').$approvalLetter->getClientOriginalName();
-        $approvalLetter-> move(public_path('/approvalLetters'), $approvalLetterfilename);
 
-        $pro->approvalLetter=$approvalLetter;
 
         $pro->category = $request->category;
         $pro->gSLink = $request->gSLink;

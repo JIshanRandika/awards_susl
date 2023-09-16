@@ -13,6 +13,10 @@ class Submission extends Model
         'category',
         'file',
         'authorName',
+        'approvalLetter',
+        'gSLink',
+        'numCit',
+        'year'
     ];
 
 }

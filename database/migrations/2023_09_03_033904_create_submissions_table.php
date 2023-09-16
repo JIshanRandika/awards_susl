@@ -16,8 +16,12 @@ class CreateSubmissionsTable extends Migration
         Schema::create('submissions', function (Blueprint $table) {
             $table->id();
             $table->longText('category');
-            $table->longText('file');
+            $table->longText('file')->nullable();
             $table->longText('authorName');
+            $table->longText('approvalLetter');
+            $table->longText('gSLink')->nullable();
+            $table->longText('numCit')->nullable();
+            $table->longText('year')->nullable();
             $table->timestamps();
         });
     }

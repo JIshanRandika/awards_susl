@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\Confirm;
 use App\Models\Submission;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 
@@ -67,6 +69,9 @@ class SubmissionController extends Controller
         $pro->year = $currentYear;
 
         $pro->save();
+
+        Mail:: to($request->email)->send(new Confirm());
+
         return redirect()->route('home')
             ->with('success','Submitted successfully.');
     }

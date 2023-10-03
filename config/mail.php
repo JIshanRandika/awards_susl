@@ -97,7 +97,7 @@ return [
 
     'from' => [
         'address' => env('MAIL_FROM_ADDRESS', 'jishanrandika@gmail.com'),
-        'name' => env('MAIL_FROM_NAME', 'Mahapola & Bursary Internal Process Checker - Sabaragamuwa University of Sri Lanka'),
+        'name' => env('MAIL_FROM_NAME', 'Performance Appraisal of Academic Staff Members at University Day - Sabaragamuwa University of Sri Lanka'),
     ],
     'encryption' => env('MAIL_ENCRYPTION', 'tls'),
     /*

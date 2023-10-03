@@ -61,6 +61,8 @@ Route::post('/reset-password', '\App\Http\Controllers\Auth\ResetPasswordControll
 
 Route::get('/deletebyyear', [\App\Http\Controllers\SubmissionController::class, 'deletebyyear'])->name('deletebyyear');;
 
+Route::get('/getSubByFormRequest',[App\Http\Controllers\HomeController::class, 'getSubByFormRequest'])->name('getSubByFormRequest');
+
 
 Route::get('/tab1',function (){
     return view('home');

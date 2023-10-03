@@ -8,6 +8,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Submission;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -35,6 +37,18 @@ class HomeController extends Controller
 
         return view('home', compact('categories','submissions'));
 //        return view('home',compact('category'));
+    }
+
+    public function getSubByFormRequest(Request $request)
+    {
+        $categories = Category::all();
+
+        $submissions = collect(DB::select('
+        SELECT * FROM `submissions`;
+        '))->where('category', '=', $request->input('category'));
+
+        return view('home', compact('categories','submissions'));
+
     }
 
 

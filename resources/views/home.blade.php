@@ -48,6 +48,105 @@
 
                             </div>
                         </div>
+
+
+                        <script>
+                            $(document).ready(function() {
+                                // Function to show/hide the "Number of Citations" input based on category selection
+                                function toggleNumCitInput() {
+                                    var selectedCategory = $("#categorySelect").val();
+                                    if (selectedCategory === "Best Researcher (Senior)" || selectedCategory === "Best Young Researcher" || selectedCategory === "Best Researcher at Faculty Level") {
+                                        $("#guidelineA").show();
+                                    } else {
+                                        $("#guidelineA").hide();
+                                    }
+                                }
+                                toggleNumCitInput();
+                                $("#categorySelect").change(function() {
+                                    toggleNumCitInput();
+                                });
+                            });
+                        </script>
+                        <div style="margin-bottom: 10px" id="guidelineA" class="col-xs-12 col-sm-12 col-md-12" style="display: none;">
+                            <a href="#" class="form-group">
+                                <strong style="color:#0048ff;">Click to Download Guidelines A</strong>
+                            </a>
+                        </div>
+
+
+                        <script>
+                            $(document).ready(function() {
+                                // Function to show/hide the "Number of Citations" input based on category selection
+                                function toggleNumCitInput() {
+                                    var selectedCategory = $("#categorySelect").val();
+                                    if (selectedCategory === "Most Cited Researcher") {
+                                        $("#guidelineB").show();
+                                    } else {
+                                        $("#guidelineB").hide();
+                                    }
+                                }
+                                toggleNumCitInput();
+                                $("#categorySelect").change(function() {
+                                    toggleNumCitInput();
+                                });
+                            });
+                        </script>
+                        <div style="margin-bottom: 10px" id="guidelineB" class="col-xs-12 col-sm-12 col-md-12" style="display: none;">
+                            <a href="#" class="form-group">
+                                <strong style="color:#0048ff;">Click to Download Guidelines B</strong>
+                            </a>
+                        </div>
+
+                        <script>
+                            $(document).ready(function() {
+                                // Function to show/hide the "Number of Citations" input based on category selection
+                                function toggleNumCitInput() {
+                                    var selectedCategory = $("#categorySelect").val();
+                                    if (selectedCategory === "Recipient of Highest Number of Research Grant") {
+                                        $("#guidelineC").show();
+                                    } else {
+                                        $("#guidelineC").hide();
+                                    }
+                                }
+                                toggleNumCitInput();
+                                $("#categorySelect").change(function() {
+                                    toggleNumCitInput();
+                                });
+                            });
+                        </script>
+                        <div style="margin-bottom: 10px" id="guidelineC" class="col-xs-12 col-sm-12 col-md-12" style="display: none;">
+                            <a href="#" class="form-group">
+                                <strong style="color:#0048ff;">Click to Download Guidelines C</strong>
+                            </a>
+                        </div>
+
+                        <script>
+                            $(document).ready(function() {
+                                // Function to show/hide the "Number of Citations" input based on category selection
+                                function toggleNumCitInput() {
+                                    var selectedCategory = $("#categorySelect").val();
+                                    if (selectedCategory === "Recipient of Highest Number of Patents or University Best Inventor") {
+                                        $("#guidelineD").show();
+                                    } else {
+                                        $("#guidelineD").hide();
+                                    }
+                                }
+                                toggleNumCitInput();
+                                $("#categorySelect").change(function() {
+                                    toggleNumCitInput();
+                                });
+                            });
+                        </script>
+                        <div style="margin-bottom: 10px" id="guidelineD" class="col-xs-12 col-sm-12 col-md-12" style="display: none;">
+                            <a href="#" class="form-group">
+                                <strong style="color:#0048ff;">Click to Download Guidelines C</strong>
+                            </a>
+                        </div>
+
+
+
+
+
                         <script>
                             $(document).ready(function() {
                                 // Function to show/hide the "Number of Citations" input based on category selection
@@ -152,11 +251,7 @@
                                         $("#hardCopy").hide();
                                     }
                                 }
-
-                                // Initially hide/show based on the selected category on page load
                                 toggleNumCitInput();
-
-                                // Attach an event handler to the category select element
                                 $("#categorySelect").change(function() {
                                     toggleNumCitInput();
                                 });
@@ -175,6 +270,14 @@
                                 <input style="display: none" type="text" value="{{ Auth::user()->name }}"  name="authorName" class="form-control" placeholder="NIC">
                             </div>
                         </div>
+
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="form-group">
+                                <input style="display: none" type="text" value="{{ Auth::user()->email }}"  name="email" class="form-control" placeholder="email">
+                            </div>
+                        </div>
+
+
                         <div  class="col-xs-12 col-sm-12 col-md-12">
                             <button class="welcomebutton" type="submit">Submit</button>
                         </div>
@@ -185,6 +288,25 @@
             @endif
 
             @if(checkPermission(['admin','reviewer']))
+                <div style="padding: 50px">
+                    <form action="{{ route('getSubByFormRequest') }}" id="selectform" method="GET">
+                        @csrf
+                        <div class="form-group">
+                            <strong>Select a category:</strong>
+                            <select name="category" id="categorySelect" required>
+                                <option value="" selected disabled>Select a category</option>
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->category }}">{{ $category->category }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+                            <button type="submit" class="btn btn-primary">Search</button>
+                        </div>
+
+                    </form>
+                </div>
+
                 @if (count($submissions) > 0)
                     <div style="padding: 50px">
                         <h2>Submissions</h2>
@@ -219,6 +341,51 @@
 
                 @endif
             @endif
+
+
+            @if(checkPermission(['user']))
+
+                    @if (count($submissions) > 0)
+
+                        <div style="padding: 50px">
+                            <h2>Submissions</h2>
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    {{--                                <th>Author Name</th>--}}
+                                    <th>Date</th>
+                                    <th>Category</th>
+                                    <th>Evaluation File</th>
+                                    <th>Approval Letter</th>
+{{--                                    <th>Google Scholar</th>--}}
+{{--                                    <th>Citations</th>--}}
+{{--                                    <th>Year</th>--}}
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach ($submissions as $submission)
+                                    @if ($submission->authorName == Auth::user()->name)
+                                    <tr>
+
+                                        {{--                                    <td>{{ $submission->authorName }}</td>--}}
+                                        <td>{{ $submission->updated_at }}</td>
+                                        <td>{{ $submission->category }}</td>
+                                        <td><a href="{{ asset('submissions/' . $submission->file) }}" target="_blank">{{ $submission->file }}</a></td>
+                                        <td><a href="{{ asset('approvalLetters/' . $submission->approvalLetter) }}" target="_blank">{{ $submission->approvalLetter }}</a></td>
+{{--                                        <td>{{ $submission->gSLink }}</td>--}}
+{{--                                        <td>{{ $submission->numCit }}</td>--}}
+{{--                                        <td>{{ $submission->year }}</td>--}}
+                                    </tr>
+                                    @endif
+
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+
+                    @endif
+                @endif
+
 
     </div>
 @endsection

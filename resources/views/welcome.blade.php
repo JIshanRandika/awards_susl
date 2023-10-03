@@ -48,7 +48,7 @@
 
                     <div class="mycenter">
                         <div class="wecomebox " style="background: #520103">
-                            <div style="font-weight: bold; font-size: 3vw">Awards</div>
+                            <div style="font-weight: bold; font-size: 3vw">Performance Appraisal of Academic Staff Members at University Day</div>
                             <div style="font-size: 1.5vw">Sabaragamuwa University of Sri Lanka</div>
                         </div>
                     </div>

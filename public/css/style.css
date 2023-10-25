@@ -21,6 +21,7 @@
 
 .welcomebgimage{
     /*background-image:url('/images/bgwelcome.png') ;*/
+    background: rgb(252, 208, 200);
     width: 100%;
     justify-content: center;
     display: inline-flex;

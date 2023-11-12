@@ -8,6 +8,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Submission;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -34,8 +35,10 @@ class HomeController extends Controller
 
         $categories = Category::all(); // Retrieve categories from the database
         $submissions = Submission::all();
+        $users = User::where('is_permission', '1')->get();
 
-        return view('home', compact('categories','submissions'));
+
+        return view('home', compact('categories','submissions','users'));
 //        return view('home',compact('category'));
     }
 
@@ -43,9 +46,20 @@ class HomeController extends Controller
     {
         $categories = Category::all();
 
-        $submissions = collect(DB::select('
+        if($request->input('faculty')){
+            $submissions = collect(DB::select('
         SELECT * FROM `submissions`;
-        '))->where('category', '=', $request->input('category'));
+        '))->where('year', '=', $request->input('year'))
+                ->where('faculty', '=', $request->input('faculty'))
+                ->where('category', '=', $request->input('category'));
+        }else{
+            $submissions = collect(DB::select('
+        SELECT * FROM `submissions`;
+        '))->where('year', '=', $request->input('year'))
+                ->where('category', '=', $request->input('category'));
+        }
+
+
 
         return view('home', compact('categories','submissions'));
 

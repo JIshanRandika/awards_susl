@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Mail\Confirm;
+use App\Models\Category;
 use App\Models\Submission;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -63,6 +65,7 @@ class SubmissionController extends Controller
 
 
         $pro->category = $request->category;
+        $pro->faculty = $request->faculty;
         $pro->gSLink = $request->gSLink;
         $pro->numCit = $request->numCit;
         $pro->authorName = $request->authorName;
@@ -70,7 +73,7 @@ class SubmissionController extends Controller
 
         $pro->save();
 
-        Mail:: to($request->email)->send(new Confirm());
+//        Mail:: to($request->email)->send(new Confirm());
 
         return redirect()->route('home')
             ->with('success','Submitted successfully.');
@@ -107,6 +110,25 @@ class SubmissionController extends Controller
      */
     public function update(Request $request, Submission $submission)
     {
+//        if($request->input('email')){
+//
+//            $submission->update([
+//                'reviewer'=>$request->input('email'),
+//            ]);
+//        }
+        if($request->input('marks')){
+            $submission->update([
+                'marks'=>$request->input('marks'),
+            ]);
+        }
+
+        $categories = Category::all(); // Retrieve categories from the database
+        $submissions = Submission::all();
+        $users = User::where('is_permission', '1')->get();
+
+
+        return view('home', compact('categories','submissions','users'))
+            ->with('success', 'Updated successfully');
         //
     }
 

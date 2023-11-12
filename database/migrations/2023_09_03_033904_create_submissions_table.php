@@ -22,6 +22,9 @@ class CreateSubmissionsTable extends Migration
             $table->longText('gSLink')->nullable();
             $table->longText('numCit')->nullable();
             $table->longText('year')->nullable();
+            $table->longText('faculty')->nullable();
+            $table->longText('marks')->nullable();
+            $table->longText('reviewer')->nullable();
             $table->timestamps();
         });
     }

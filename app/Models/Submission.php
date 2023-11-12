@@ -16,7 +16,10 @@ class Submission extends Model
         'approvalLetter',
         'gSLink',
         'numCit',
-        'year'
+        'year',
+        'faculty',
+        'marks',
+        'reviewer'
     ];
 
 }

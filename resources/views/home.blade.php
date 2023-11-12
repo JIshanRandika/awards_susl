@@ -145,6 +145,45 @@
 
 
 
+                        <script>
+                            $(document).ready(function() {
+                                // Function to show/hide the "Number of Citations" input based on category selection
+                                function toggleNumCitInput() {
+                                    var selectedCategory = $("#categorySelect").val();
+                                    if (selectedCategory === "Best Researcher at Faculty Level") {
+                                        $("#faculty").show();
+                                    } else {
+                                        $("#faculty").hide();
+                                    }
+                                }
+                                toggleNumCitInput();
+                                $("#categorySelect").change(function() {
+                                    toggleNumCitInput();
+                                });
+                            });
+                        </script>
+                        <div id="faculty" class="col-xs-12 col-sm-12 col-md-12" style="display: none;">
+                            <div class="form-group">
+                                <strong>Faculty</strong>
+                                <select name="faculty" class="custom-select" id="inputGroupSelect04" >
+                                    <option></option>
+                                    <option value="Faculty of Computing">Faculty of Computing</option>
+                                    <option value="Faculty of Agriculture Sciences">Faculty of Agriculture Sciences</option>
+                                    <option value="Faculty of Applied Sciences">Faculty of Applied Sciences</option>
+                                    <option value="Faculty of Geomatics">Faculty of Geomatics</option>
+                                    <option value="Faculty of Sports">Faculty of Sports</option>
+                                    <option value="Faculty of Management Studies">Faculty of Management Studies</option>
+                                    <option value="Faculty of Medicine">Faculty of Medicine</option>
+                                    <option value="Faculty of Social Sciences and Languages">Faculty of Social Sciences and Languages</option>
+                                    <option value="Faculty of Technology">Faculty of Technology</option>
+                                    <option value="Faculty of Graduate Studies">Faculty of Graduate Studies</option>
+                                    <option value="Centre for Indigenous Knowledge and Community Studies (CIKCS)">Centre for Indigenous Knowledge and Community Studies (CIKCS)</option>
+                                    <option value="Centre for Open and Distance learning(CODL)">Centre for Open and Distance learning(CODL)</option>
+                                </select>
+                            </div>
+                        </div>
+
+
 
 
                         <script>
@@ -299,6 +338,46 @@
                                     <option value="{{ $category->category }}">{{ $category->category }}</option>
                                 @endforeach
                             </select>
+                                <div class="my-2">
+                                    <input required type="text" name="year" class="form-control" placeholder="YYYY">
+                                </div>
+                            <script>
+                                $(document).ready(function() {
+                                    // Function to show/hide the "Number of Citations" input based on category selection
+                                    function toggleNumCitInput() {
+                                        var selectedCategory = $("#categorySelect").val();
+                                        if (selectedCategory === "Best Researcher at Faculty Level") {
+                                            $("#faculty").show();
+                                        } else {
+                                            $("#faculty").hide();
+                                        }
+                                    }
+                                    toggleNumCitInput();
+                                    $("#categorySelect").change(function() {
+                                        toggleNumCitInput();
+                                    });
+                                });
+                            </script>
+                            <div id="faculty" class="" style="display: none;">
+                                <div class="form-group">
+                                    <strong>Faculty</strong>
+                                    <select name="faculty" class="custom-select" id="inputGroupSelect04" >
+                                        <option></option>
+                                        <option value="Faculty of Computing">Faculty of Computing</option>
+                                        <option value="Faculty of Agriculture Sciences">Faculty of Agriculture Sciences</option>
+                                        <option value="Faculty of Applied Sciences">Faculty of Applied Sciences</option>
+                                        <option value="Faculty of Geomatics">Faculty of Geomatics</option>
+                                        <option value="Faculty of Sports">Faculty of Sports</option>
+                                        <option value="Faculty of Management Studies">Faculty of Management Studies</option>
+                                        <option value="Faculty of Medicine">Faculty of Medicine</option>
+                                        <option value="Faculty of Social Sciences and Languages">Faculty of Social Sciences and Languages</option>
+                                        <option value="Faculty of Technology">Faculty of Technology</option>
+                                        <option value="Faculty of Graduate Studies">Faculty of Graduate Studies</option>
+                                        <option value="Centre for Indigenous Knowledge and Community Studies (CIKCS)">Centre for Indigenous Knowledge and Community Studies (CIKCS)</option>
+                                        <option value="Centre for Open and Distance learning(CODL)">Centre for Open and Distance learning(CODL)</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                             <button type="submit" class="btn btn-primary">Search</button>
@@ -319,22 +398,90 @@
                                 <th>Approval Letter</th>
                                 <th>Google Scholar</th>
                                 <th>Citations</th>
+                                <th>Faculty</th>
                                 <th>Year</th>
+                                <th>Marks</th>
+                                <th>Reviewer</th>
+                                @if(checkPermission(['admin']))
+                                    <th>Select</th>
+                                @endif
+                                @if(checkPermission(['reviewer']))
+                                    <th>Marks</th>
+                                @endif
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach ($submissions as $submission)
-                                <tr>
+                            @if(checkPermission(['admin']))
+                                @foreach ($submissions as $submission)
+                                    <tr>
 
-                                    <td>{{ $submission->authorName }}</td>
-                                    <td>{{ $submission->category }}</td>
-                                    <td><a href="{{ asset('submissions/' . $submission->file) }}" target="_blank">{{ $submission->file }}</a></td>
-                                    <td><a href="{{ asset('approvalLetters/' . $submission->approvalLetter) }}" target="_blank">{{ $submission->approvalLetter }}</a></td>
-                                    <td>{{ $submission->gSLink }}</td>
-                                    <td>{{ $submission->numCit }}</td>
-                                    <td>{{ $submission->year }}</td>
-                                </tr>
-                            @endforeach
+                                        <td>{{ $submission->authorName }}</td>
+                                        <td>{{ $submission->category }}</td>
+                                        <td><a href="{{ asset('submissions/' . $submission->file) }}" target="_blank">{{ $submission->file }}</a></td>
+                                        <td><a href="{{ asset('approvalLetters/' . $submission->approvalLetter) }}" target="_blank">{{ $submission->approvalLetter }}</a></td>
+                                        <td>{{ $submission->gSLink }}</td>
+                                        <td>{{ $submission->numCit }}</td>
+                                        <td>{{ $submission->faculty }}</td>
+                                        <td>{{ $submission->year }}</td>
+                                        <td>{{ $submission->marks }}</td>
+                                        <td>{{ $submission->reviewer }}</td>
+                                        @if(checkPermission(['admin']))
+                                            <form action="{{ route('submission.update',$submission->id) }}" method="POST">
+                                                @csrf
+                                                @method('PUT')
+                                                <td>
+                                                    <select name="email" id="categorySelect" required>
+                                                        <option value="" selected disabled>Select a reviewer</option>
+                                                        @foreach ($users as $user)
+                                                            <option value="{{ $user->email }}" >{{ $user->email }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </td>
+
+                                                <td>
+                                                    <button type="submit" class="btn btn-danger">Update</button>
+                                                </td>
+                                            </form>
+                                        @endif
+
+                                    </tr>
+                                @endforeach
+                            @endif
+                            @if(checkPermission(['reviewer']))
+                                @foreach ($submissions as $submission)
+                                    @if($submission->reviewer == Auth::user()->email)
+                                        <tr>
+
+                                            <td>{{ $submission->authorName }}</td>
+                                            <td>{{ $submission->category }}</td>
+                                            <td><a href="{{ asset('submissions/' . $submission->file) }}" target="_blank">{{ $submission->file }}</a></td>
+                                            <td><a href="{{ asset('approvalLetters/' . $submission->approvalLetter) }}" target="_blank">{{ $submission->approvalLetter }}</a></td>
+                                            <td>{{ $submission->gSLink }}</td>
+                                            <td>{{ $submission->numCit }}</td>
+                                            <td>{{ $submission->faculty }}</td>
+                                            <td>{{ $submission->year }}</td>
+                                            <td>{{ $submission->marks }}</td>
+                                            <td>{{ $submission->reviewer }}</td>
+
+                                            @if(checkPermission(['reviewer']))
+                                                <form action="{{ route('submission.update',$submission->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <td>
+                                                        <input value="{{$submission->marks}}"  name="marks" class="form-control" />
+                                                    </td>
+
+                                                    <td>
+                                                        <button type="submit" class="btn btn-danger">Update</button>
+                                                    </td>
+                                                </form>
+                                            @endif
+                                        </tr>
+                                    @endif
+
+                                @endforeach
+                            @endif
+
                             </tbody>
                         </table>
                     </div>
